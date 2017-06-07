@@ -166,53 +166,6 @@ define(['js/views/validation',
                 $(event.target).prev().removeClass('is-focused');
             }
         });
-                    err_modal = new ValidationErrorModal();
-                    err_modal.setContent(json_response);
-                    err_modal.setResetCallback(reset_callback);
-                    err_modal.show();
-                }
-            }
-        });
-    },
-    revertView: function() {
-        var self = this;
-        this.model.fetch({
-            success: function() { self.render(); },
-            reset: true
-        });
-    },
-    renderTemplate: function (key, model) {
-        var tmpl = (model.values) ? this.options_template : this.base_template;
-        var newKeyId = _.uniqueId('policy_key_'),
-        newEle = tmpl({ key: key, display_name : model.display_name, help: model.help,
-            value : JSON.stringify(model.value, null, 4), deprecated: model.deprecated,
-            options: model.values,
-            keyUniqueId: newKeyId, valueUniqueId: _.uniqueId('policy_value_')});
-
-        this.fieldToSelectorMap[key] = newKeyId;
-        this.selectorToField[newKeyId] = key;
-        return newEle;
-    },
-    focusInput : function(event) {
-        $(event.target).prev().addClass("is-focused");
-    },
-    blurInput : function(event) {
-        $(event.target).prev().removeClass("is-focused");
-    },
-    selectSetField : function(event) {
-        var self = this;
-        var key = this.selectorToField[event.currentTarget.id];
-        var newVal = $(event.currentTarget).val();
-        var JSONValue = JSON.parse(newVal);
-        var modelVal = self.model.get(key);
-        modelVal.value = JSONValue;
-        self.model.set(key, modelVal);
-        var message = gettext("Your changes will not take effect until you save your progress. Take care with key and value formatting, as validation is not implemented.");
-        self.showNotificationBar(message,
-                                 _.bind(self.saveView, self),
-                                 _.bind(self.revertView, self));
-    }
-});
 
         return AdvancedView;
     });
