@@ -18,6 +18,7 @@ class ExternalCourseTile(models.Model):
     pacing_type = models.CharField(max_length=255, null=False, blank=False)
     is_credit_eligible = models.BooleanField(default=False)
     is_verified_eligible = models.BooleanField(default=False)
+    course_duration = models.CharField(max_length=255, null=True, blank=True)
 
     def __unicode__(self):
         return "%s (%s)" % (self.title, self.org)

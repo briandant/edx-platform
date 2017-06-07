@@ -76,3 +76,6 @@ elif 'appsembler_usage' in DATABASES:
     # if the AppsemblerUsageRouter isn't enabled, then avoid mistakes by
     # removing the database alias
     del DATABASES['appsembler_usage']
+
+# to allow to run python-saml with custom port
+SP_SAML_RESTRICT_MODE = False
