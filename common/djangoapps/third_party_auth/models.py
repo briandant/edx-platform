@@ -3,8 +3,9 @@
 Models used to implement SAML SSO support in third_party_auth
 (inlcuding Shibboleth support)
 """
-import re
 from __future__ import absolute_import
+
+import re
 
 from config_models.models import ConfigurationModel, cache
 from django.conf import settings
