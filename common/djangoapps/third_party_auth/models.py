@@ -6,6 +6,7 @@ Models used to implement SAML SSO support in third_party_auth
 from __future__ import absolute_import
 
 import re
+from random import randrange
 
 from config_models.models import ConfigurationModel, cache
 from django.conf import settings
